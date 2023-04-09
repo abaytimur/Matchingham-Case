@@ -8,7 +8,6 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Zenject;
 
-
 namespace Controllers
 {
     public class LevelManager : MonoBehaviour

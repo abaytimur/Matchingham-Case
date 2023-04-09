@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Components.Items
 {
-    public class MatchItem : ItemBase, IHit
+    public class MatchItem : MonoBehaviour, IHit
     {
         public void OnHit(RaycastHit hitInfo)
         {

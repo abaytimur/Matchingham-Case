@@ -8,10 +8,14 @@ namespace Miscellaneous
 {
     public static class Helpers
     {
-        private const string ItemPrefabsFolderPath = "Assets/Prefabs/Items";
-        private const string LevelDataPath =  "Assets/Scripts/Data/GameData/Level";
-               
+        // The spawn number is multiplied by this constant 
+        public const int ItemNumberToMatch = 3;
+        
         private static readonly List<string> PrefabNames = new();
+
+        private const string ItemPrefabsFolderPath = "Assets/Prefabs/Items";
+        private const string LevelDataPath = "Assets/Scripts/Data/GameData/Level";
+        
 
         public static List<string> GetItemPrefabNameList()
         {
@@ -49,7 +53,7 @@ namespace Miscellaneous
 
             return PrefabNames;
         }
-        
+
         public static List<LevelDataSo> GetAllLevelDataSo()
         {
             List<LevelDataSo> allKitchenData = new();

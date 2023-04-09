@@ -1,4 +1,4 @@
-namespace Components.Pools
+namespace Abstract
 {
     public interface IPoolObject
     {

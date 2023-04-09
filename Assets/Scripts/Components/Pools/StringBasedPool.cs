@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Abstract;
 using Data.GameData.Level;
 using Events.External;
 using UnityEngine;
@@ -10,32 +11,32 @@ namespace Components.Pools
     {
         [SerializeField] private List<PoolData> pools;
         private Dictionary<string, List<GameObject>> _poolDictionary;
-        private GameSceneEvents _gameSceneEvents;
-
-        [Inject]
-        private void Construct(GameSceneEvents gameEventsSo) => _gameSceneEvents = gameEventsSo;
-
-        private void OnEnable() => RegisterEvents();
-        private void OnDisable() => UnRegisterEvents();
-        private void RegisterEvents() => _gameSceneEvents.OnLevelStart += OnLevelStart;
-        private void UnRegisterEvents() => _gameSceneEvents.OnLevelStart -= OnLevelStart;
-
-        private void OnLevelStart(LevelDataSo levelDataSo)
-        {
-            Debug.Log("StringBasedPool.OnLevelStart");
-            // foreach (var item in _poolDictionary)
-            // {
-            //     var poolString = item.Key;
-            //
-            //     foreach (var poolItem in item.Value)
-            //     {
-            //         var temporaryItem = poolItem;
-            //         if (temporaryItem.TryGetComponent(out ItemBase itemBase))
-            //         {
-            //         }
-            //     }
-            // }
-        }
+        // private GameSceneEvents _gameSceneEvents;
+        //
+        // [Inject]
+        // private void Construct(GameSceneEvents gameEventsSo) => _gameSceneEvents = gameEventsSo;
+        
+        // private void OnEnable() => RegisterEvents();
+        // private void OnDisable() => UnRegisterEvents();
+        // private void RegisterEvents() => _gameSceneEvents.OnLevelStart += OnLevelStart;
+        // private void UnRegisterEvents() => _gameSceneEvents.OnLevelStart -= OnLevelStart;
+        
+        // private void OnLevelStart(LevelDataSo levelDataSo)
+        // {
+        //     Debug.Log("StringBasedPool.OnLevelStart");
+        //     // foreach (var item in _poolDictionary)
+        //     // {
+        //     //     var poolString = item.Key;
+        //     //
+        //     //     foreach (var poolItem in item.Value)
+        //     //     {
+        //     //         var temporaryItem = poolItem;
+        //     //         if (temporaryItem.TryGetComponent(out ItemBase itemBase))
+        //     //         {
+        //     //         }
+        //     //     }
+        //     // }
+        // }
 
         private void Start()
         {

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Controllers
@@ -9,8 +8,6 @@ namespace Controllers
         {
             Application.targetFrameRate = 60;
             Screen.sleepTimeout = -1;
-            
-            LevelManager levelManager = new LevelManager();
         }
     }
 }
