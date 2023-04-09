@@ -10,7 +10,6 @@ namespace Installers.Scene
 {
     public class GameSceneInstaller : MonoInstaller<GameSceneInstaller>
     {
-        [TabGroup("Controller")] 
         [TabGroup("Gameplay")] [SerializeField] private SelectionSquare[] selectionSquares ;
         [TabGroup("Other")] [SerializeField] private Camera mainCamera;
         [TabGroup("Other")] [SerializeField] private StringBasedPool stringBasedPool;
@@ -19,6 +18,7 @@ namespace Installers.Scene
         {
             Container.Bind<GameSceneEvents>().AsSingle();
             Container.Bind<SelectionSquareManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GameManager>().AsSingle().NonLazy();
             Container.BindInstance(mainCamera).AsSingle().NonLazy();
             Container.BindInstance(stringBasedPool).AsSingle().NonLazy();
             Container.BindInstance(selectionSquares).AsSingle();

@@ -1,10 +1,13 @@
+using JetBrains.Annotations;
 using UnityEngine;
+using Zenject;
 
 namespace Controllers
 {
-    public class GameManager : MonoBehaviour
+    [UsedImplicitly]
+    public class GameManager : IInitializable
     {
-        private void Awake()
+        public void Initialize()
         {
             Application.targetFrameRate = 60;
             Screen.sleepTimeout = -1;
