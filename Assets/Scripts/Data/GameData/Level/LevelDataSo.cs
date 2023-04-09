@@ -11,6 +11,6 @@ namespace Data.GameData.Level
         [Tooltip(
             "The spawn number is multiplied by 3 and spawns that amount of items when the game starts. " +
             "So if you want to spawn 3 items, set the spawn number to 1.")]
-        public List<ItemData> itemDataList = new();
+        public List<ItemSpawnData> itemDataList = new();
     }
 }

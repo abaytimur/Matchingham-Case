@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a628f535f7544c209162300b5fc825f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <ItemName>k__BackingField: Pizza
+  rigidbody: {fileID: 2387473706967824826}
 --- !u!54 &2387473706967824826
 Rigidbody:
   m_ObjectHideFlags: 0
