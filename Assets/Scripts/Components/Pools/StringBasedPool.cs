@@ -13,10 +13,7 @@ namespace Components.Pools
         private GameSceneEvents _gameSceneEvents;
 
         [Inject]
-        private void Construct(GameSceneEvents gameEventsSo)
-        {
-            _gameSceneEvents = gameEventsSo;
-        }
+        private void Construct(GameSceneEvents gameEventsSo) => _gameSceneEvents = gameEventsSo;
 
         private void OnEnable() => RegisterEvents();
         private void OnDisable() => UnRegisterEvents();
@@ -25,6 +22,7 @@ namespace Components.Pools
 
         private void OnLevelStart(LevelDataSo levelDataSo)
         {
+            Debug.Log("StringBasedPool.OnLevelStart");
             // foreach (var item in _poolDictionary)
             // {
             //     var poolString = item.Key;
@@ -73,7 +71,7 @@ namespace Components.Pools
                 {
                     objectToSpawn.SetActive(true);
 
-                    if (_poolDictionary[poolTag][i].TryGetComponent(out IPoolableObject iPoolableObject))
+                    if (_poolDictionary[poolTag][i].TryGetComponent(out IPoolObject iPoolableObject))
                     {
                         iPoolableObject.OnObjectSpawn();
                     }
@@ -90,7 +88,7 @@ namespace Components.Pools
                     objectToSpawn.SetActive(true);
                     _poolDictionary[poolTag].Add(objectToSpawn);
 
-                    if (objectToSpawn.TryGetComponent(out IPoolableObject iPoolableObject))
+                    if (objectToSpawn.TryGetComponent(out IPoolObject iPoolableObject))
                     {
                         iPoolableObject.OnObjectSpawn();
                     }

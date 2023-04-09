@@ -10,7 +10,7 @@ namespace Controllers
             Application.targetFrameRate = 60;
             Screen.sleepTimeout = -1;
             
-            LevelController levelController = new LevelController();
+            LevelManager levelManager = new LevelManager();
         }
     }
 }
