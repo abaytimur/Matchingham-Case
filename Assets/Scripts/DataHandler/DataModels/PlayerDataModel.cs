@@ -7,7 +7,7 @@ namespace DataHandler.DataModels
     {
         public static PlayerDataModel Data;
 
-        public int lastCompletedLevel = 1;
+        public int lastCompletedLevel;
 
         public PlayerDataModel Load()
         {

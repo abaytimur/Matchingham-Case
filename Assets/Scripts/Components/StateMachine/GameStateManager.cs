@@ -9,8 +9,6 @@ namespace Components.StateMachine
 {
     public class GameStateManager : MonoBehaviour
     {
-        private GameSceneEvents _gameSceneEvents;
-
         private GameBaseState _currentState;
 
         private LoadingState _loadingState;
@@ -23,36 +21,22 @@ namespace Components.StateMachine
         private LoadingScreen _loadingScreen;
         private MainMenuScreen _mainMenuScreen;
 
-        private bool _readyToChangeStates;
-
         [Inject]
-        private void Construct(GameSceneEvents gameEventsSo, LoadingScreen loadingScreen, MainMenuScreen mainMenuScreen)
+        private void Construct(LoadingScreen loadingScreen, MainMenuScreen mainMenuScreen)
         {
-            _gameSceneEvents = gameEventsSo;
             _loadingScreen = loadingScreen;
             _mainMenuScreen = mainMenuScreen;
         }
-
-        private void OnEnable() => RegisterEvents();
-
-        private void OnDisable()
-        {
-            UnRegisterEvents();
-            _readyToChangeStates = false;
-        }
-
-        private void RegisterEvents() => _gameSceneEvents.OnDataLoadCompleted += OnDataLoadCompleted;
-        private void UnRegisterEvents() => _gameSceneEvents.OnDataLoadCompleted -= OnDataLoadCompleted;
-
-        private void OnDataLoadCompleted() => StartCoroutine(ChangeStateCoroutine(_mainMenuState));
 
         private void Awake() => InitializeStates();
 
         private void Start()
         {
-            _readyToChangeStates = true;
             _currentState = _loadingState;
             _currentState.EnterState(this);
+
+            float randomFakeLoadTime = Random.Range(2, 4);
+            StartCoroutine(ChangeStateCoroutine(_mainMenuState, randomFakeLoadTime));
         }
 
         private void InitializeStates()
@@ -71,14 +55,16 @@ namespace Components.StateMachine
 
         private void ChangeState(GameBaseState newState)
         {
+            if (newState == _currentState) return;
+
             _currentState.ExitState(this);
             _currentState = newState;
             _currentState.EnterState(this);
         }
 
-        private IEnumerator ChangeStateCoroutine(GameBaseState newState)
+        private IEnumerator ChangeStateCoroutine(GameBaseState newState, float delay = 2)
         {
-            yield return new WaitUntil(() => _readyToChangeStates);
+            yield return new WaitForSeconds(delay);
             ChangeState(newState);
         }
     }

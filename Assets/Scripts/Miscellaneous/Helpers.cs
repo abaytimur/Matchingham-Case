@@ -14,7 +14,7 @@ namespace Miscellaneous
         private static readonly List<string> PrefabNames = new();
 
         private const string ItemPrefabsFolderPath = "Assets/Prefabs/Items";
-        private const string LevelDataPath = "Assets/Scripts/Data/GameData/Level";
+        private const string LevelDataPath = "Assets/Scripts/DataHandler/GameDatas/Level";
         
 
         public static List<string> GetItemPrefabNameList()

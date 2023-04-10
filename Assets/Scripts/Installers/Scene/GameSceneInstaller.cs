@@ -28,6 +28,7 @@ namespace Installers.Scene
 
         public override void InstallBindings()
         {
+            
             Container.Bind<GameSceneEvents>().AsSingle();
             Container.Bind<SelectionSquareManager>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameManager>().AsSingle().NonLazy();

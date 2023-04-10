@@ -9,7 +9,5 @@ namespace Events.External
     {
         public UnityAction<LevelDataSo> OnLevelStart;
         public UnityAction<bool> OnLevelEnd;
-        
-        public UnityAction OnDataLoadCompleted;
     }
 }

@@ -1,17 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataHandler.DataModels;
 using DataHandler.GameDatas.Level;
 using Events.External;
 using JetBrains.Annotations;
-using UnityEditor.VersionControl;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
-using Task = System.Threading.Tasks.Task;
 
 namespace Controllers
 {
     [UsedImplicitly]
-    public class LevelManager : IInitializable
+    public class LevelManager : IInitializable, IDisposable
     {
         private readonly List<LevelDataSo> _levelList;
         private readonly GameSceneEvents _gameSceneEvents;
@@ -24,35 +25,72 @@ namespace Controllers
             _levelList = levelList.ToList();
         }
 
-        public async void Initialize()
+        //            _gameSceneEvents.OnLevelStart?.Invoke(GetCurrentLevel());
+
+        public void Initialize() => RegisterEvents();
+        public void Dispose() => UnregisterEvents();
+        private void RegisterEvents() => _gameSceneEvents.OnLevelStart += OnLevelStart;
+        private void UnregisterEvents() => _gameSceneEvents.OnLevelStart -= OnLevelStart;
+
+        private void OnLevelStart(LevelDataSo levelDataSo)
         {
-            await Task.Delay(2000);
-                
+        }
+
+
+        public void StartLevel(int levelToLoad)
+        {
+            if (_levelList is null || _levelList.Count == 0)
+            {
+                Debug.LogError("There are no levels to lead.");
+                return;
+            }
+
+            // Adjust levelToLoad using the modulo operator to fit within the bounds of _levelList
+            int adjustedLevelToLoad = levelToLoad % _levelList.Count;
+            _currentLevelDataSo = _levelList[adjustedLevelToLoad];
+
             _gameSceneEvents.OnLevelStart?.Invoke(GetCurrentLevel());
         }
 
-        private LevelDataSo GetCurrentLevel()
+        [Button]
+        private LevelDataSo PlayNextLevel()
         {
-            if (_currentLevelDataSo is not null)
-            {
-                Debug.LogError("1");
-
-                return _currentLevelDataSo;
-            }
-
-            if (_levelList is not null && _levelList.Count > 0)
-            {
-                Debug.LogError("2");
-
-                _currentLevelDataSo = _levelList[0];
-            }
-            else
+            if (_levelList is null || _levelList.Count == 0)
             {
                 Debug.LogError("There are no levels to lead.");
                 return null;
             }
 
-            return _currentLevelDataSo;
+            int currentLevelIndex = _levelList.IndexOf(_currentLevelDataSo);
+
+            if (currentLevelIndex < 0)
+            {
+                Debug.LogError("Current level not found in the level list.");
+                return null;
+            }
+
+            // Get the next level using the modulo operator for wrapping around the list.
+            LevelDataSo nextLevelDataSo = _levelList.ElementAtOrDefault((currentLevelIndex + 1) % _levelList.Count);
+            
+            
+            _gameSceneEvents.OnLevelStart?.Invoke(nextLevelDataSo);
+
+            return nextLevelDataSo;
+        }
+
+        private LevelDataSo GetCurrentLevel()
+        {
+            if (_currentLevelDataSo is not null)
+                return _currentLevelDataSo;
+
+            if (_levelList is null || _levelList.Count == 0)
+            {
+                Debug.LogError("There are no levels to lead.");
+                return null;
+            }
+
+            int adjustedLevelToLoad = PlayerDataModel.Data.lastCompletedLevel % _levelList.Count;
+            return _currentLevelDataSo = _levelList[adjustedLevelToLoad];
         }
     }
 }

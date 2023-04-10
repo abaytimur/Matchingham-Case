@@ -1,29 +1,21 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using DataHandler.DataModels;
-using Events.External;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Zenject;
 using Debug = UnityEngine.Debug;
 
 namespace DataHandler
 {
     public class DataHandler : MonoBehaviour
     {
-        private GameSceneEvents _gameSceneEvents;
-
         [BoxGroup("Settings")] public SettingDataModel setting;
         [BoxGroup("Player")] public PlayerDataModel player;
-
-        [Inject]
-        private void Construct(GameSceneEvents gameEventsSo) => _gameSceneEvents = gameEventsSo;
 
         public void Awake()
         {
             setting = new SettingDataModel().Load();
             player = new PlayerDataModel().Load();
-            _gameSceneEvents.OnDataLoadCompleted?.Invoke();
         }
 
         private void OnApplicationQuit()

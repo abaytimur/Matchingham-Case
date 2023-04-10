@@ -5,16 +5,35 @@ namespace Components.UI
 {
     public abstract class ScreenBase : MonoBehaviour
     {
-        public virtual void Show()
+        [SerializeField] protected Canvas canvas;
+
+        public void Show(bool instant = false)
         {
-            transform.localScale = Vector3.zero;
-            gameObject.SetActive(true);
-            transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack);
+            if (instant)
+            {
+                transform.localScale = Vector3.one;
+                canvas.enabled = true;
+            }
+            else
+            {
+                transform.localScale = Vector3.zero;
+                canvas.enabled = true;
+                transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack);
+            }
         }
 
-        public virtual void Hide()
+        public void Hide(bool instant = false)
         {
-            transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() => gameObject.SetActive(false));
+            if (instant)
+            {
+                canvas.enabled = false;
+            }
+            else
+            {
+                transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() => canvas.enabled = false);
+            }
         }
+
+        private void Reset() => canvas = GetComponent<Canvas>();
     }
 }
