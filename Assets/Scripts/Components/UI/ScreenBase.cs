@@ -27,13 +27,9 @@ namespace Components.UI
         public void Hide(bool instant = false)
         {
             if (instant)
-            {
                 canvas.enabled = false;
-            }
             else
-            {
                 transform.DOScale(Vector3.zero, 0.3f).SetEase(Ease.InBack).OnComplete(() => canvas.enabled = false);
-            }
         }
 
         private void Reset() => canvas = GetComponent<Canvas>();
