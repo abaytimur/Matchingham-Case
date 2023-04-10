@@ -1,4 +1,6 @@
-﻿namespace Components.StateMachine.GamesStates
+﻿using Components.UI;
+
+namespace Components.StateMachine.GamesStates
 {
     public class LoadingState : GameBaseState
     {

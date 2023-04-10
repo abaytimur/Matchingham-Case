@@ -1,4 +1,4 @@
-namespace Components.Items
+namespace Components.MatchItem
 {
     public class CoinItem : ItemBase
     {

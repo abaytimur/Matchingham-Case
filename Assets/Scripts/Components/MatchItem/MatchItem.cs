@@ -1,7 +1,7 @@
 using Abstract;
 using UnityEngine;
 
-namespace Components.Items
+namespace Components.MatchItem
 {
     [SelectionBase]
     public class MatchItem : MonoBehaviour, IHit

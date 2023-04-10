@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace Components.UI
 {
+    [SelectionBase]
+    [RequireComponent(typeof(Canvas))]
     public abstract class ScreenBase : MonoBehaviour
     {
         [SerializeField] protected Canvas canvas;

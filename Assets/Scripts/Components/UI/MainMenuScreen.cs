@@ -1,9 +1,7 @@
-using Components.StateMachine.GamesStates;
 using Controllers;
 using DataHandler.DataModels;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using Zenject;
 
@@ -16,10 +14,7 @@ namespace Components.UI
         private LevelManager _levelManager;
 
         [Inject]
-        private void Construct(LevelManager levelManager)
-        {
-            _levelManager = levelManager;
-        }
+        private void Construct(LevelManager levelManager) => _levelManager = levelManager;
 
         public void SetLevelData()
         {
@@ -29,16 +24,10 @@ namespace Components.UI
 
         private void SetButton()
         {
-            print(" set button");
             playButton.onClick.RemoveAllListeners();
-            //todo: look at this
-            playButton.onClick.AddListener(() => ButtonClicked(PlayerDataModel.Data.lastCompletedLevel));
+            playButton.onClick.AddListener(ButtonClicked);
         }
 
-        private void ButtonClicked(int levelNumber)
-        {
-            print(" button clicked");
-            _levelManager.StartLevel(levelNumber);
-        }
+        private void ButtonClicked() => _levelManager.StartLevel(PlayerDataModel.Data.lastCompletedLevel + 1);
     }
 }

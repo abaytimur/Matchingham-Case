@@ -1,6 +1,7 @@
 using System.Collections;
 using Components.StateMachine.GamesStates;
 using Components.UI;
+using DataHandler.GameDatas.Level;
 using Events.External;
 using UnityEngine;
 using Zenject;
@@ -9,6 +10,7 @@ namespace Components.StateMachine
 {
     public class GameStateManager : MonoBehaviour
     {
+        private GameSceneEvents _gameSceneEvents;
         private GameBaseState _currentState;
 
         private LoadingState _loadingState;
@@ -20,13 +22,25 @@ namespace Components.StateMachine
 
         private LoadingScreen _loadingScreen;
         private MainMenuScreen _mainMenuScreen;
+        private GameScreen _gameScreen;
+        private EndGameScreen _endGameScreen;
 
         [Inject]
-        private void Construct(LoadingScreen loadingScreen, MainMenuScreen mainMenuScreen)
+        private void Construct(LoadingScreen loadingScreen, MainMenuScreen mainMenuScreen, GameScreen gameScreen,
+            EndGameScreen endGameScreen, GameSceneEvents gameSceneEvents)
         {
             _loadingScreen = loadingScreen;
             _mainMenuScreen = mainMenuScreen;
+            _gameScreen = gameScreen;
+            _endGameScreen = endGameScreen;
+            _gameSceneEvents = gameSceneEvents;
         }
+
+        private void OnEnable() => RegisterEvents();
+        private void OnDisable() => UnRegisterEvents();
+        private void RegisterEvents() => _gameSceneEvents.OnLevelStart += OnLevelStart;
+        private void UnRegisterEvents() => _gameSceneEvents.OnLevelStart -= OnLevelStart;
+        private void OnLevelStart(LevelDataSo level) => ChangeState(_gameState);
 
         private void Awake() => InitializeStates();
 
@@ -43,8 +57,8 @@ namespace Components.StateMachine
         {
             _loadingState = new LoadingState(_loadingScreen);
             _mainMenuState = new MainMenuState(_mainMenuScreen);
-            _gameState = new GameState();
-            _levelEndState = new LevelEndState();
+            _gameState = new GameState(_gameScreen);
+            _levelEndState = new LevelEndState(_endGameScreen);
         }
 
         private void Update()

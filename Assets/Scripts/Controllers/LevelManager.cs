@@ -12,7 +12,7 @@ using Zenject;
 namespace Controllers
 {
     [UsedImplicitly]
-    public class LevelManager : IInitializable, IDisposable
+    public class LevelManager 
     {
         private readonly List<LevelDataSo> _levelList;
         private readonly GameSceneEvents _gameSceneEvents;
@@ -24,18 +24,6 @@ namespace Controllers
             _gameSceneEvents = gameEventsSo;
             _levelList = levelList.ToList();
         }
-
-        //            _gameSceneEvents.OnLevelStart?.Invoke(GetCurrentLevel());
-
-        public void Initialize() => RegisterEvents();
-        public void Dispose() => UnregisterEvents();
-        private void RegisterEvents() => _gameSceneEvents.OnLevelStart += OnLevelStart;
-        private void UnregisterEvents() => _gameSceneEvents.OnLevelStart -= OnLevelStart;
-
-        private void OnLevelStart(LevelDataSo levelDataSo)
-        {
-        }
-
 
         public void StartLevel(int levelToLoad)
         {
@@ -71,8 +59,8 @@ namespace Controllers
 
             // Get the next level using the modulo operator for wrapping around the list.
             LevelDataSo nextLevelDataSo = _levelList.ElementAtOrDefault((currentLevelIndex + 1) % _levelList.Count);
-            
-            
+
+
             _gameSceneEvents.OnLevelStart?.Invoke(nextLevelDataSo);
 
             return nextLevelDataSo;

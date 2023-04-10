@@ -1,6 +1,6 @@
 using Components.Pools;
 using Components.SelectionSquare;
-using Components.StateMachine.GamesStates;
+using Components.StateMachine;
 using Components.UI;
 using Controllers;
 using DataHandler.GameDatas.Level;
@@ -15,20 +15,22 @@ namespace Installers.Scene
 {
     public class GameSceneInstaller : MonoInstaller<GameSceneInstaller>
     {
-        [TabGroup("Gameplay")] [SerializeField] private SelectionSquare[] selectionSquares;
+        [TabGroup("Gameplay")] [SerializeField]
+        private SelectionSquare[] selectionSquares;
 
         [TabGroup("Levels")] [InlineButton("GetAllLevelsFromPath")] [SerializeField]
         private LevelDataSo[] levelDataSos;
-        
+
         [TabGroup("Screens")] [SerializeField] private LoadingScreen loadingScreen;
         [TabGroup("Screens")] [SerializeField] private MainMenuScreen mainMenuScreen;
+        [TabGroup("Screens")] [SerializeField] private GameScreen gameScreen;
+        [TabGroup("Screens")] [SerializeField] private EndGameScreen endGameScreen;
 
         [TabGroup("Other")] [SerializeField] private Camera mainCamera;
         [TabGroup("Other")] [SerializeField] private StringBasedPool stringBasedPool;
 
         public override void InstallBindings()
         {
-            
             Container.Bind<GameSceneEvents>().AsSingle();
             Container.Bind<SelectionSquareManager>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameManager>().AsSingle().NonLazy();
@@ -37,11 +39,13 @@ namespace Installers.Scene
             Container.BindInstance(selectionSquares).AsSingle();
             Container.BindInstance(loadingScreen).AsSingle();
             Container.BindInstance(mainMenuScreen).AsSingle();
+            Container.BindInstance(gameScreen).AsSingle();
+            Container.BindInstance(endGameScreen).AsSingle();
             if (levelDataSos.IsNullOrEmpty())
                 Debug.LogError($"There are no levels to lead." +
                                $" Please add levels to the {nameof(levelDataSos)} list.");
             Container.BindInstance(levelDataSos).AsSingle();
-            Container.BindInterfacesAndSelfTo<LevelManager>().AsSingle().NonLazy();
+            Container.Bind<LevelManager>().AsSingle().NonLazy();
         }
 
         // InlineButton is using this method.

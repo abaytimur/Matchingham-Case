@@ -1,4 +1,3 @@
-using Components.Items;
 using UnityEngine;
 
 namespace Components.SelectionSquare
@@ -7,9 +6,9 @@ namespace Components.SelectionSquare
     {
         [field: SerializeField] public bool IsOccupied { get; private set; }
         [SerializeField] private Transform collectPoint;
-        public MatchItem CurrentItem { get; private set; }
+        public MatchItem.MatchItem CurrentItem { get; private set; }
         
-        public void PlaceItem(MatchItem item)
+        public void PlaceItem(MatchItem.MatchItem item)
         {
             SetOccupied(true);
             // CurrentItem = item;
@@ -22,7 +21,7 @@ namespace Components.SelectionSquare
         }
         
         public void SetOccupied(bool isOccupied) => IsOccupied = isOccupied;
-        public void SetCurrentItem(MatchItem item) => CurrentItem = item;
+        public void SetCurrentItem(MatchItem.MatchItem item) => CurrentItem = item;
         
         public void ClearSlot()
         {

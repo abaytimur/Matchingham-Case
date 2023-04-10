@@ -1,7 +1,4 @@
-using Components.UI;
-using UnityEngine;
-
-namespace Components.StateMachine.GamesStates
+namespace Components.UI
 {
     public class LoadingScreen : ScreenBase
     {

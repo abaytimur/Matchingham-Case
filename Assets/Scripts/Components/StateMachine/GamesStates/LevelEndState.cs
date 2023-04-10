@@ -1,13 +1,12 @@
-﻿namespace Components.StateMachine.GamesStates
-{
-    public class LevelEndState: GameBaseState
-    {
-        public override void EnterState(GameStateManager gameStateManager)
-        {
-        }
+﻿using Components.UI;
 
-        public override void ExitState(GameStateManager gameStateManager)
-        {
-        }
+namespace Components.StateMachine.GamesStates
+{
+    public class LevelEndState : GameBaseState
+    {
+        private readonly EndGameScreen _endGameScreen;
+        public LevelEndState(EndGameScreen endGameScreen) => _endGameScreen = endGameScreen;
+        public override void EnterState(GameStateManager gameStateManager) => _endGameScreen.Show();
+        public override void ExitState(GameStateManager gameStateManager) => _endGameScreen.Hide();
     }
 }
