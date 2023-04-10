@@ -1,37 +1,53 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Data.GameData.Level;
 using Events.External;
-using Miscellaneous;
+using JetBrains.Annotations;
 using UnityEngine;
-using Sirenix.OdinInspector;
 using Zenject;
 
 namespace Controllers
 {
-    public class LevelManager : MonoBehaviour
+    [UsedImplicitly]
+    public class LevelManager : IInitializable
     {
-        [SerializeField] private List<LevelDataSo> levelList = new();
+        private List<LevelDataSo> _levelList;
+        private readonly GameSceneEvents _gameSceneEvents;
         private LevelDataSo _currentLevelDataSo;
-        private GameSceneEvents _gameSceneEvents;
 
         [Inject]
-        private void Construct(GameSceneEvents gameEventsSo) => _gameSceneEvents = gameEventsSo;
-        
-        [Button]
-        public void GetAllLevelsFromPath()
+        private LevelManager(GameSceneEvents gameEventsSo, List<LevelDataSo> levelList)
         {
-            levelList.Clear();
-            levelList = Helpers.GetAllLevelDataSo().ToList();
+            _gameSceneEvents = gameEventsSo;
+            _levelList = levelList.ToList();
+            Debug.LogError($"111111111");
         }
 
-        private IEnumerator Start()
+        public void Initialize()
         {
-            yield return new WaitForSeconds(1f);
+            Debug.LogError("2222222222");
+                
             _gameSceneEvents.OnLevelStart?.Invoke(GetCurrentLevel());
         }
 
-        private LevelDataSo GetCurrentLevel() => _currentLevelDataSo ??= levelList[0];
+        private LevelDataSo GetCurrentLevel()
+        {
+            if (_currentLevelDataSo is not null)
+            {
+                return _currentLevelDataSo;
+            }
+
+            if (_levelList is not null && _levelList.Count > 0)
+            {
+                _currentLevelDataSo = _levelList[0];
+            }
+            else
+            {
+                Debug.LogError("There are no levels to lead.");
+                return null;
+            }
+
+            return _currentLevelDataSo;
+        }
     }
 }

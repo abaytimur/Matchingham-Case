@@ -36,6 +36,12 @@ namespace Controllers
         // Level Initialization
         private void OnLevelStart(LevelDataSo levelDataSo)
         {
+            if (levelDataSo is null)
+            {
+                Debug.LogError("Level data is null!");
+                return;
+            }
+            
             _itemList.Clear();
 
             for (int i = 0; i < levelDataSo.itemDataList.Count; i++)
