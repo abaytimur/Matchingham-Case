@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Data.GameData.Item;
-using Sirenix.OdinInspector;
+using DataHandler.GameDatas.Item;
 using UnityEngine;
 
-namespace Data.GameData.Level
+namespace DataHandler.GameDatas.Level
 {
     [CreateAssetMenu(fileName = "LevelDataSo", menuName = "Game/Level Data")]
     public class LevelDataSo : ScriptableObject

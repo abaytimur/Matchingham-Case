@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Components.Items;
 using Components.Pools;
-using Data.GameData.Level;
+using DataHandler.GameDatas.Level;
 using Events.External;
 using Miscellaneous;
 using UnityEngine;
@@ -67,7 +67,6 @@ namespace Controllers
 
         private void SpawnItemsOnRandomPositions(List<MatchItem> itemList)
         {
-            // Iterate through the matchItems list
             foreach (MatchItem item in itemList)
             {
                 // Generate random x and z coordinates within the rectangle borders

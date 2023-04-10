@@ -1,4 +1,4 @@
-using Data.GameData.Level;
+using DataHandler.GameDatas.Level;
 using JetBrains.Annotations;
 using UnityEngine.Events;
 
@@ -9,5 +9,7 @@ namespace Events.External
     {
         public UnityAction<LevelDataSo> OnLevelStart;
         public UnityAction<bool> OnLevelEnd;
+        
+        public UnityAction OnDataLoadCompleted;
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
 
-namespace Data.GameData.Item
+namespace DataHandler.GameDatas.Item
 {
     [Serializable]
     public class ItemSpawnData
