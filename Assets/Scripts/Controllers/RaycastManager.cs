@@ -108,7 +108,6 @@ namespace Controllers
             }
         }
 
-        // Hold and Reset Held Item methods
         private void HoldItem()
         {
             if (_heldItem is null) return;
