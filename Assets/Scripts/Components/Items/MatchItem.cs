@@ -3,7 +3,7 @@ using DG.Tweening;
 using QuickOutline.Scripts;
 using UnityEngine;
 
-namespace Components.MatchItem
+namespace Components.Items
 {
     [SelectionBase]
     public class MatchItem : MonoBehaviour, IHit

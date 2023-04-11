@@ -11,6 +11,7 @@ namespace Components.UI
     {
         [SerializeField] Button playButton;
         [SerializeField] TextMeshProUGUI playButtonText;
+        [SerializeField] TextMeshProUGUI playerStarsText;
         private LevelManager _levelManager;
 
         [Inject]
@@ -19,6 +20,7 @@ namespace Components.UI
         public void SetLevelData()
         {
             playButtonText.SetText($"Level {PlayerDataModel.Data.lastCompletedLevel + 1}");
+            playerStarsText.SetText($"{PlayerDataModel.Data.starsCollected}");
             SetButton();
         }
 
@@ -28,6 +30,6 @@ namespace Components.UI
             playButton.onClick.AddListener(ButtonClicked);
         }
 
-        private void ButtonClicked() => _levelManager.StartLevel(PlayerDataModel.Data.lastCompletedLevel + 1);
+        private void ButtonClicked() => _levelManager.StartLevel();
     }
 }

@@ -1,30 +1,69 @@
-using System.Collections.Generic;
+using System;
 using System.Linq;
-using Components.MatchItem;
+using Components.Items;
 using Components.SelectionSquare;
+using DataHandler.DataModels;
+using DataHandler.GameDatas.Level;
+using Events.External;
 using JetBrains.Annotations;
 using Miscellaneous;
+using UnityEngine;
 using Zenject;
 
 namespace Controllers
 {
+    using System.Collections.Generic;
+
     [UsedImplicitly]
-    public class SelectionSquareManager
-    
+    public class SelectionSquareManager : IInitializable, IDisposable
     {
+        private readonly GameSceneEvents _gameSceneEvents;
         private readonly List<SelectionSquare> _selectionSquareList;
+        private readonly RotateObjects _rotateObjects;
+        private int _totalSpawnedItemsCount;
+        private int _matchCount;
 
         [Inject]
-        private SelectionSquareManager(SelectionSquare[] selectionSquares) => _selectionSquareList = selectionSquares.ToList();
+        private SelectionSquareManager(GameSceneEvents gameSceneEvents, SelectionSquare[] selectionSquares,
+            RotateObjects rotateObjects)
+        {
+            _gameSceneEvents = gameSceneEvents;
+            _selectionSquareList = selectionSquares.ToList();
+            _rotateObjects = rotateObjects;
+        }
 
+        public void Initialize()
+        {
+            _gameSceneEvents.OnLevelStart += OnLevelStart;
+            _gameSceneEvents.OnLevelEnd += OnLevelEnd;
+            _gameSceneEvents.OnSendTotalSpawnedItemsCount += OnGetTotalSpawnedItemsCount;
+        }
+
+        public void Dispose()
+        {
+            _gameSceneEvents.OnLevelStart -= OnLevelStart;
+            _gameSceneEvents.OnLevelEnd -= OnLevelEnd;
+            _gameSceneEvents.OnSendTotalSpawnedItemsCount -= OnGetTotalSpawnedItemsCount;
+        }
+
+        private void OnLevelStart(LevelDataSo levelDataSo) => _matchCount = 0;
+
+        private void OnLevelEnd(bool isLevelCompleted)
+        {
+            foreach (var item in _selectionSquareList)
+            {
+                item.ClearSlot();
+                item.SetOccupied(false);
+            }
+        }
+
+        private void OnGetTotalSpawnedItemsCount(int totalSpawnedItemsCount) =>
+            _totalSpawnedItemsCount = Convert.ToInt32(totalSpawnedItemsCount / Helpers.ItemNumberToMatch);
 
         public void PlaceItemOnSelectionSquare(MatchItem item)
         {
             // Check if all SelectionSquares are occupied
-            if (_selectionSquareList.All(square => square.IsOccupied))
-            {
-                return;
-            }
+            if (_selectionSquareList.All(square => square.IsOccupied)) return;
 
             int lastIndex = _selectionSquareList.FindLastIndex(square =>
                 square.CurrentItem is not null && square.CurrentItem.ItemName == item.ItemName);
@@ -51,6 +90,7 @@ namespace Controllers
                 _selectionSquareList[lastIndex].SetCurrentItem(item);
             }
 
+            _rotateObjects.AddObject(item.gameObject);
             CheckForOccupation();
 
             // Check if the required number of consecutive items have the same name and remove them if necessary
@@ -86,8 +126,16 @@ namespace Controllers
             }
 
             // If there are matches equal to or greater than the required match count, remove the items and adjust the list
-            if (matchCount < Helpers.ItemNumberToMatch) return;
-            
+            if (matchCount < Helpers.ItemNumberToMatch)
+            {
+                if (_selectionSquareList.All(square => square.IsOccupied))
+                {
+                    _gameSceneEvents.OnLevelEnd?.Invoke(false);
+                }
+
+                return;
+            }
+
             int removeStartIndex = leftIndex + 1;
             int removeEndIndex = index;
 
@@ -95,6 +143,19 @@ namespace Controllers
             {
                 _selectionSquareList[i].ClearSlot();
                 _selectionSquareList[i].SetOccupied(false);
+            }
+
+            _gameSceneEvents.OnItemsMatched?.Invoke();
+            _matchCount++;
+
+            Debug.Log($"{_matchCount}: matchCount ");
+            Debug.Log($"{_totalSpawnedItemsCount}: _totalSpawnedItemsCount ");
+
+            if (_matchCount >= _totalSpawnedItemsCount)
+            {
+                Debug.Log("Level End");
+                PlayerDataModel.Data.lastCompletedLevel++;
+                _gameSceneEvents.OnLevelEnd?.Invoke(true);
             }
 
             AdjustListAfterRemoval(removeStartIndex);

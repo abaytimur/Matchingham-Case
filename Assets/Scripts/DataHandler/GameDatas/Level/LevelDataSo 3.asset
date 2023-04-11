@@ -12,15 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24dad2f9d36b41f088eb23f58c94698c, type: 3}
   m_Name: LevelDataSo 3
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
   itemDataList:
   - itemName: Hamburger
     spawnNumber: 1
@@ -28,7 +19,13 @@ MonoBehaviour:
     spawnNumber: 1
   - itemName: Egg
     spawnNumber: 1
-  - itemName: Lemon
+  - itemName: Pea
     spawnNumber: 1
   - itemName: Banana
+    spawnNumber: 1
+  - itemName: Carrot
+    spawnNumber: 1
+  - itemName: Waffle
+    spawnNumber: 1
+  - itemName: Watermelon
     spawnNumber: 1

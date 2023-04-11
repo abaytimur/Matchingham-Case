@@ -24,6 +24,8 @@ namespace Components.StateMachine
         private MainMenuScreen _mainMenuScreen;
         private GameScreen _gameScreen;
         private EndGameScreen _endGameScreen;
+        
+        public bool IsLevelCompleted { get; private set; }
 
         [Inject]
         private void Construct(LoadingScreen loadingScreen, MainMenuScreen mainMenuScreen, GameScreen gameScreen,
@@ -38,10 +40,27 @@ namespace Components.StateMachine
 
         private void OnEnable() => RegisterEvents();
         private void OnDisable() => UnRegisterEvents();
-        private void RegisterEvents() => _gameSceneEvents.OnLevelStart += OnLevelStart;
-        private void UnRegisterEvents() => _gameSceneEvents.OnLevelStart -= OnLevelStart;
+        
+        private void RegisterEvents()
+        {
+            _gameSceneEvents.OnLevelStart += OnLevelStart;
+            _gameSceneEvents.OnLevelEnd += OnLevelEnd;
+        }
+
+        private void UnRegisterEvents()
+        {
+            _gameSceneEvents.OnLevelStart -= OnLevelStart;
+            _gameSceneEvents.OnLevelEnd -= OnLevelEnd;
+        }
+
         private void OnLevelStart(LevelDataSo level) => ChangeState(_gameState);
 
+        private void OnLevelEnd(bool isLevelCompleted)
+        {
+            IsLevelCompleted = isLevelCompleted;
+            ChangeState(_levelEndState);
+        }
+        
         private void Awake() => InitializeStates();
 
         private void Start()

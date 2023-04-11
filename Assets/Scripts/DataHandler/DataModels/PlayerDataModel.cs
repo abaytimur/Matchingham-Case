@@ -8,6 +8,7 @@ namespace DataHandler.DataModels
         public static PlayerDataModel Data;
 
         public int lastCompletedLevel;
+        public int starsCollected;
 
         public PlayerDataModel Load()
         {

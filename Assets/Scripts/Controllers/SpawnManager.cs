@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Components.MatchItem;
+using Components.Items;
 using Components.Pools;
 using DataHandler.GameDatas.Level;
 using Events.External;
@@ -30,8 +30,18 @@ namespace Controllers
 
         private void OnEnable() => RegisterEvents();
         private void OnDisable() => UnRegisterEvents();
-        private void RegisterEvents() => _gameSceneEvents.OnLevelStart += OnLevelStart;
-        private void UnRegisterEvents() => _gameSceneEvents.OnLevelStart -= OnLevelStart;
+
+        private void RegisterEvents()
+        {
+            _gameSceneEvents.OnLevelStart += OnLevelStart;
+            // _gameSceneEvents.OnLevelEnd += OnLevelEnd;
+        }
+
+        private void UnRegisterEvents()
+        {
+            _gameSceneEvents.OnLevelStart -= OnLevelStart;
+            // _gameSceneEvents.OnLevelEnd -= OnLevelEnd;
+        }
 
         // Level Initialization
         private void OnLevelStart(LevelDataSo levelDataSo)
@@ -41,6 +51,8 @@ namespace Controllers
                 Debug.LogError("Level data is null!");
                 return;
             }
+
+            ClearSpawnedItems();
             
             _itemList.Clear();
 
@@ -62,8 +74,14 @@ namespace Controllers
                 }
             }
 
+            _gameSceneEvents.OnSendTotalSpawnedItemsCount(_itemList.Count);
             SpawnItemsOnRandomPositions(_itemList);
         }
+
+        // private void OnLevelEnd(bool isLevelCompleted)
+        // {
+        //     ClearSpawnedItems();
+        // }
 
         private void SpawnItemsOnRandomPositions(List<MatchItem> itemList)
         {
@@ -78,8 +96,23 @@ namespace Controllers
                     spawnPoint.transform.position.z + randomZ);
 
                 item.transform.position = spawnPosition;
-                item.transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+                item.transform.rotation =
+                    Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             }
+        }
+
+        private void ClearSpawnedItems()
+        {
+            if (_itemList.Count == 0) return;
+            
+            foreach (MatchItem item in _itemList)
+            {
+                item.gameObject.SetActive(false);
+                item.SetRigidbody(false);
+                item.transform.localScale = Vector3.one;
+            }
+            
+            _itemList.Clear();
         }
 
         private void OnDrawGizmos()

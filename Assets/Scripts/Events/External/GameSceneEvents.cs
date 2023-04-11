@@ -9,5 +9,9 @@ namespace Events.External
     {
         public UnityAction<LevelDataSo> OnLevelStart;
         public UnityAction<bool> OnLevelEnd;
+        
+        public UnityAction OnItemsMatched;
+        public UnityAction<int> OnStarsAdded;
+        public UnityAction<int> OnSendTotalSpawnedItemsCount;
     }
 }

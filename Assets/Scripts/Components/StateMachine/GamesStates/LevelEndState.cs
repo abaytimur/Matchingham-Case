@@ -6,7 +6,13 @@ namespace Components.StateMachine.GamesStates
     {
         private readonly EndGameScreen _endGameScreen;
         public LevelEndState(EndGameScreen endGameScreen) => _endGameScreen = endGameScreen;
-        public override void EnterState(GameStateManager gameStateManager) => _endGameScreen.Show();
+
+        public override void EnterState(GameStateManager gameStateManager)
+        {
+            _endGameScreen.ShowScreen(gameStateManager.IsLevelCompleted);
+            _endGameScreen.Show();
+        }
+
         public override void ExitState(GameStateManager gameStateManager) => _endGameScreen.Hide();
     }
 }

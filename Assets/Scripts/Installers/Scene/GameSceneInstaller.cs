@@ -1,6 +1,5 @@
 using Components.Pools;
 using Components.SelectionSquare;
-using Components.StateMachine;
 using Components.UI;
 using Controllers;
 using DataHandler.GameDatas.Level;
@@ -28,14 +27,16 @@ namespace Installers.Scene
 
         [TabGroup("Other")] [SerializeField] private Camera mainCamera;
         [TabGroup("Other")] [SerializeField] private StringBasedPool stringBasedPool;
+        [TabGroup("Other")] [SerializeField] private RotateObjects rotateObjects;
 
         public override void InstallBindings()
         {
             Container.Bind<GameSceneEvents>().AsSingle();
-            Container.Bind<SelectionSquareManager>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<SelectionSquareManager>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameManager>().AsSingle().NonLazy();
             Container.BindInstance(mainCamera).AsSingle().NonLazy();
             Container.BindInstance(stringBasedPool).AsSingle().NonLazy();
+            Container.BindInstance(rotateObjects).AsSingle().NonLazy();
             Container.BindInstance(selectionSquares).AsSingle();
             Container.BindInstance(loadingScreen).AsSingle();
             Container.BindInstance(mainMenuScreen).AsSingle();

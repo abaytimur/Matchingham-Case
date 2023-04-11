@@ -25,7 +25,7 @@ namespace Controllers
             _levelList = levelList.ToList();
         }
 
-        public void StartLevel(int levelToLoad)
+        public void StartLevel()
         {
             if (_levelList is null || _levelList.Count == 0)
             {
@@ -33,15 +33,13 @@ namespace Controllers
                 return;
             }
 
-            // Adjust levelToLoad using the modulo operator to fit within the bounds of _levelList
-            int adjustedLevelToLoad = levelToLoad % _levelList.Count;
-            _currentLevelDataSo = _levelList[adjustedLevelToLoad];
-
-            _gameSceneEvents.OnLevelStart?.Invoke(GetCurrentLevel());
+            LevelDataSo nextLevelDataSo =_levelList[ PlayerDataModel.Data.lastCompletedLevel % _levelList.Count];
+            _currentLevelDataSo = nextLevelDataSo;
+            
+            _gameSceneEvents.OnLevelStart?.Invoke(_currentLevelDataSo);
         }
 
-        [Button]
-        private LevelDataSo PlayNextLevel()
+        public LevelDataSo PlayNextLevel()
         {
             if (_levelList is null || _levelList.Count == 0)
             {
@@ -49,19 +47,22 @@ namespace Controllers
                 return null;
             }
 
-            int currentLevelIndex = _levelList.IndexOf(_currentLevelDataSo);
+            // int currentLevelIndex = _levelList.IndexOf(_currentLevelDataSo);
+            //
+            // if (currentLevelIndex < 0)
+            // {
+            //     Debug.LogError("Current level not found in the level list.");
+            //     return null;
+            // }
+            //
+            // // Get the next level using the modulo operator for wrapping around the list.
+            // LevelDataSo nextLevelDataSo = _levelList.ElementAtOrDefault((currentLevelIndex + 1) % _levelList.Count);
 
-            if (currentLevelIndex < 0)
-            {
-                Debug.LogError("Current level not found in the level list.");
-                return null;
-            }
-
-            // Get the next level using the modulo operator for wrapping around the list.
-            LevelDataSo nextLevelDataSo = _levelList.ElementAtOrDefault((currentLevelIndex + 1) % _levelList.Count);
-
-
-            _gameSceneEvents.OnLevelStart?.Invoke(nextLevelDataSo);
+            int nextLevelIndex = (PlayerDataModel.Data.lastCompletedLevel+1) % _levelList.Count;
+            LevelDataSo nextLevelDataSo =_levelList[nextLevelIndex];
+            _currentLevelDataSo = nextLevelDataSo;
+            
+            _gameSceneEvents.OnLevelStart?.Invoke(_currentLevelDataSo);
 
             return nextLevelDataSo;
         }
@@ -79,6 +80,17 @@ namespace Controllers
 
             int adjustedLevelToLoad = PlayerDataModel.Data.lastCompletedLevel % _levelList.Count;
             return _currentLevelDataSo = _levelList[adjustedLevelToLoad];
+        }
+
+        public void PlayCurrentLevel()
+        {
+            if (_currentLevelDataSo == null)
+            {
+                Debug.LogError("There is no current level to play.");
+                return;
+            }
+
+            _gameSceneEvents.OnLevelStart?.Invoke(_currentLevelDataSo);
         }
     }
 }
