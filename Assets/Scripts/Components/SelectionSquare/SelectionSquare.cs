@@ -31,6 +31,9 @@ namespace Components.SelectionSquare
 
         private void SendToPool()
         {
+            if (CurrentItem is null)
+                return;
+            
             CurrentItem.SetRigidbody(false);
             Transform itemTransform = CurrentItem.transform;
             itemTransform.SetParent(null);

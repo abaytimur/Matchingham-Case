@@ -47,7 +47,7 @@ namespace Components.UI
         {
             if (isLevelCompleted)
             {
-                PlayerDataModel.Data.starsCollected = _currentStarCount;
+                PlayerDataModel.Data.starsCollected += _currentStarCount;
             }
         }
 
