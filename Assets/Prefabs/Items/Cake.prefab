@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5491348753495940770}
-  - component: {fileID: -6443586793569382496}
   - component: {fileID: 5491348753495940797}
   - component: {fileID: 5491348753495940768}
   - component: {fileID: -5868070991537826635}
-  - component: {fileID: -7668392482841491926}
   m_Layer: 0
   m_Name: Cake
   m_TagString: Untagged
@@ -37,24 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6443586793569382496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5491348753495940796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: -7668392482841491926}
-  _installerPrefabs: []
-  _autoRun: 1
-  _kernel: {fileID: 0}
 --- !u!114 &5491348753495940797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: Cake
   rigidbody: {fileID: 5491348753495940768}
+  outline: {fileID: -5868070991537826635}
 --- !u!54 &5491348753495940768
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103,19 +84,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &-7668392482841491926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5491348753495940796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a93883824fc84409893617f385e11d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: -5868070991537826635}
 --- !u!1001 &5098879821852411389
 PrefabInstance:
   m_ObjectHideFlags: 0

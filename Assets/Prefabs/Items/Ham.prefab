@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6834451817169629269}
-  - component: {fileID: 2443761439586149394}
   - component: {fileID: 6834451817169629258}
   - component: {fileID: 6834451817169629271}
   - component: {fileID: 1924136753839481252}
-  - component: {fileID: -3345699124316386245}
   m_Layer: 0
   m_Name: Ham
   m_TagString: Untagged
@@ -37,24 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2443761439586149394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6834451817169629259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: -3345699124316386245}
-  _installerPrefabs: []
-  _autoRun: 1
-  _kernel: {fileID: 0}
 --- !u!114 &6834451817169629258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: Ham
   rigidbody: {fileID: 6834451817169629271}
+  outline: {fileID: 1924136753839481252}
 --- !u!54 &6834451817169629271
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103,19 +84,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &-3345699124316386245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6834451817169629259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a93883824fc84409893617f385e11d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: 1924136753839481252}
 --- !u!1001 &3859767277323121423
 PrefabInstance:
   m_ObjectHideFlags: 0

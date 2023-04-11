@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6071110330263407350}
-  - component: {fileID: 2452613393159206266}
   - component: {fileID: 6071110330263407337}
   - component: {fileID: 6071110330263407348}
   - component: {fileID: 3397074700026535950}
-  - component: {fileID: 1133221674817402488}
   m_Layer: 0
   m_Name: Waffle
   m_TagString: Untagged
@@ -37,24 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2452613393159206266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6071110330263407336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: 1133221674817402488}
-  _installerPrefabs: []
-  _autoRun: 1
-  _kernel: {fileID: 0}
 --- !u!114 &6071110330263407337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: Waffle
   rigidbody: {fileID: 6071110330263407348}
+  outline: {fileID: 3397074700026535950}
 --- !u!54 &6071110330263407348
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103,19 +84,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1133221674817402488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6071110330263407336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a93883824fc84409893617f385e11d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: 3397074700026535950}
 --- !u!1001 &5841447959522909994
 PrefabInstance:
   m_ObjectHideFlags: 0

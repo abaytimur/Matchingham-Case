@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9194108044507283887}
-  - component: {fileID: 6615164134365358158}
   - component: {fileID: 9194108044507283888}
   - component: {fileID: 9194108044507283885}
   - component: {fileID: -5002265390943630411}
-  - component: {fileID: -4071001229925384160}
   m_Layer: 0
   m_Name: Onion
   m_TagString: Untagged
@@ -37,24 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6615164134365358158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194108044507283889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: -4071001229925384160}
-  _installerPrefabs: []
-  _autoRun: 1
-  _kernel: {fileID: 0}
 --- !u!114 &9194108044507283888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: Onion
   rigidbody: {fileID: 9194108044507283885}
+  outline: {fileID: -5002265390943630411}
 --- !u!54 &9194108044507283885
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103,19 +84,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &-4071001229925384160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194108044507283889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a93883824fc84409893617f385e11d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: -5002265390943630411}
 --- !u!1001 &5263925452723791745
 PrefabInstance:
   m_ObjectHideFlags: 0

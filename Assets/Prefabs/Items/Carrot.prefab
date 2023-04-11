@@ -9,11 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2971101646358535109}
-  - component: {fileID: 7565453735091086388}
   - component: {fileID: 2971101646358535130}
   - component: {fileID: 2971101646358535111}
   - component: {fileID: -7255928628565188028}
-  - component: {fileID: -3336531712742788693}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Untagged
@@ -37,24 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7565453735091086388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2971101646358535131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: -3336531712742788693}
-  _installerPrefabs: []
-  _autoRun: 1
-  _kernel: {fileID: 0}
 --- !u!114 &2971101646358535130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemName>k__BackingField: Carrot
   rigidbody: {fileID: 2971101646358535111}
+  outline: {fileID: -7255928628565188028}
 --- !u!54 &2971101646358535111
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103,19 +84,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &-3336531712742788693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2971101646358535131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8a93883824fc84409893617f385e11d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: -7255928628565188028}
 --- !u!1001 &982922861040958450
 PrefabInstance:
   m_ObjectHideFlags: 0

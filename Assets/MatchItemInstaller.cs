@@ -1,3 +1,4 @@
+using QuickOutline.Scripts;
 using UnityEngine;
 using Zenject;
 

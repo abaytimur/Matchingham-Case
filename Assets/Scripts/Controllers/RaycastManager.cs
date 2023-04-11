@@ -1,6 +1,7 @@
 using Abstract;
 using Components.MatchItem;
 using DataHandler.GameDatas.Level;
+using DG.Tweening;
 using Events.External;
 using UnityEngine;
 using Zenject;
@@ -17,6 +18,7 @@ namespace Controllers
         private SelectionSquareManager _selectionSquareManager;
         private GameSceneEvents _gameSceneEvents;
         private MatchItem _heldItem;
+        private IHit _currentHitItem;
         private Vector3 _originalPosition;
         private bool _canUseRaycast;
 
@@ -74,9 +76,12 @@ namespace Controllers
             if (_heldItem is null) return;
             if (raycastHit)
             {
+                _heldItem.transform.DOKill();
                 _selectionSquareManager.PlaceItemOnSelectionSquare(_heldItem);
+                _currentHitItem.OnHit(false);
                 _heldItem.SetRigidbody(true);
                 _heldItem = null;
+                _currentHitItem = null;
             }
 
             ResetHeldItem();
@@ -93,8 +98,14 @@ namespace Controllers
                 GameObject hitObject = hit.collider.gameObject;
                 if (hitObject.transform.parent is null) return;
                 Transform tempParent = hitObject.transform.parent;
+                if (_heldItem is not null && tempParent.gameObject != _heldItem.gameObject)
+                {
+                    ResetHeldItem();
+                }
+
                 if (!tempParent.TryGetComponent(out IHit hitScriptInParent)) return;
-                MatchItem newHeldItem = hitScriptInParent as MatchItem;
+                _currentHitItem = hitScriptInParent;
+                MatchItem newHeldItem = _currentHitItem as MatchItem;
 
                 if (_heldItem == newHeldItem) return;
                 ResetHeldItem();
@@ -103,8 +114,7 @@ namespace Controllers
                 if (_heldItem != null) _originalPosition = _heldItem.transform.position;
                 HoldItem();
 
-                // Call OnHit() method for each displayed MatchItem
-                hitScriptInParent.OnHit(hit);
+                hitScriptInParent.OnHit(true);
             }
         }
 
@@ -114,14 +124,18 @@ namespace Controllers
             _heldItem.SetRigidbody(true);
             Vector3 direction = (_mainCamera.transform.position - _originalPosition).normalized;
             Vector3 position = _originalPosition + direction * displayHeight;
-            _heldItem.transform.position = position;
+            _heldItem.transform.DOMove(position, .3f);
+            // _heldItem.transform.position = position;
         }
 
         private void ResetHeldItem()
         {
             if (_heldItem is null) return;
+            _currentHitItem.OnHit(false);
             _heldItem.SetRigidbody(false);
-            _heldItem.transform.position = _originalPosition;
+            // _heldItem.transform.position = _originalPosition;
+            _heldItem.transform.DOMove(_originalPosition, .3f);
+            _currentHitItem = null;
             _heldItem = null;
         }
     }
