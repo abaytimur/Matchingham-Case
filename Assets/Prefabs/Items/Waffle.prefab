@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Waffle
   rigidbody: {fileID: 6071110330263407348}
   outline: {fileID: 3397074700026535950}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &6071110330263407348
 Rigidbody:
   m_ObjectHideFlags: 0

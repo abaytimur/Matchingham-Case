@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Cake
   rigidbody: {fileID: 5491348753495940768}
   outline: {fileID: -5868070991537826635}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &5491348753495940768
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Onion
   rigidbody: {fileID: 9194108044507283885}
   outline: {fileID: -5002265390943630411}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &9194108044507283885
 Rigidbody:
   m_ObjectHideFlags: 0

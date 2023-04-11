@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Watermelon
   rigidbody: {fileID: 8469294253732678796}
   outline: {fileID: 3427946979071059799}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &8469294253732678796
 Rigidbody:
   m_ObjectHideFlags: 0

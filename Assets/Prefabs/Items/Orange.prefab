@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Orange
   rigidbody: {fileID: 5937584721894906500}
   outline: {fileID: -1613147489482860823}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &5937584721894906500
 Rigidbody:
   m_ObjectHideFlags: 0

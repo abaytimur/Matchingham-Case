@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Yogurt
   rigidbody: {fileID: 4386951053903147353}
   outline: {fileID: -3566507912049063605}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &4386951053903147353
 Rigidbody:
   m_ObjectHideFlags: 0

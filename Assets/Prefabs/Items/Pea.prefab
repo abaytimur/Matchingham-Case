@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Pea
   rigidbody: {fileID: 1095791127373240570}
   outline: {fileID: 1867195668979395572}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &1095791127373240570
 Rigidbody:
   m_ObjectHideFlags: 0

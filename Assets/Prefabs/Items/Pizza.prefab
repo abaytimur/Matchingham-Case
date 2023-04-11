@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Pizza
   rigidbody: {fileID: 2387473706967824826}
   outline: {fileID: 2389269382970980369}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &2387473706967824826
 Rigidbody:
   m_ObjectHideFlags: 0

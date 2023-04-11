@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Hamburger
   rigidbody: {fileID: 1948016856356707177}
   outline: {fileID: -4743783984820338525}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &1948016856356707177
 Rigidbody:
   m_ObjectHideFlags: 0

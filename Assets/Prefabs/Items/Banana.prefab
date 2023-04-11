@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Banana
   rigidbody: {fileID: 962298689337357753}
   outline: {fileID: -4501340684851033172}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &962298689337357753
 Rigidbody:
   m_ObjectHideFlags: 0

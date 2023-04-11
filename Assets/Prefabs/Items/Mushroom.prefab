@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Mushroom
   rigidbody: {fileID: 1605132660098662560}
   outline: {fileID: 1631525419479414790}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &1605132660098662560
 Rigidbody:
   m_ObjectHideFlags: 0

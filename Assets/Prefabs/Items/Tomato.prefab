@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Tomato
   rigidbody: {fileID: 8027555302716894410}
   outline: {fileID: 8673525965091222016}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &8027555302716894410
 Rigidbody:
   m_ObjectHideFlags: 0

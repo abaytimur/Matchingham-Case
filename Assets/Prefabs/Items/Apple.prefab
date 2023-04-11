@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Apple
   rigidbody: {fileID: 9057617115018184807}
   outline: {fileID: -1509723287563846219}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &9057617115018184807
 Rigidbody:
   m_ObjectHideFlags: 0

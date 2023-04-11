@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Pumpkin
   rigidbody: {fileID: 2879418289617752751}
   outline: {fileID: 5840556078020577150}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &2879418289617752751
 Rigidbody:
   m_ObjectHideFlags: 0

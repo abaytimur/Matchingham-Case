@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Ham
   rigidbody: {fileID: 6834451817169629271}
   outline: {fileID: 1924136753839481252}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &6834451817169629271
 Rigidbody:
   m_ObjectHideFlags: 0

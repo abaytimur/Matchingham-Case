@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Garlic
   rigidbody: {fileID: 6485117638650336963}
   outline: {fileID: 769445229709816161}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &6485117638650336963
 Rigidbody:
   m_ObjectHideFlags: 0

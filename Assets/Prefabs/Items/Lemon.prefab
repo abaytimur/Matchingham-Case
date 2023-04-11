@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Lemon
   rigidbody: {fileID: 5787215511560994650}
   outline: {fileID: -5350317298392659752}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &5787215511560994650
 Rigidbody:
   m_ObjectHideFlags: 0

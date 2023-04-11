@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Acom
   rigidbody: {fileID: 3882516104904807934}
   outline: {fileID: -2300489000557916415}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &3882516104904807934
 Rigidbody:
   m_ObjectHideFlags: 0

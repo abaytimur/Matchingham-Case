@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Carrot
   rigidbody: {fileID: 2971101646358535111}
   outline: {fileID: -7255928628565188028}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &2971101646358535111
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Kiwi
   rigidbody: {fileID: 7272307199206994771}
   outline: {fileID: -2155104156512496983}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &7272307199206994771
 Rigidbody:
   m_ObjectHideFlags: 0

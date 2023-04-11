@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Egg
   rigidbody: {fileID: 4704514993556859936}
   outline: {fileID: -4969329724883452647}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &4704514993556859936
 Rigidbody:
   m_ObjectHideFlags: 0

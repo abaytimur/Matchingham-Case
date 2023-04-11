@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Cherry
   rigidbody: {fileID: 8418098274515542192}
   outline: {fileID: 3770201768373370718}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &8418098274515542192
 Rigidbody:
   m_ObjectHideFlags: 0

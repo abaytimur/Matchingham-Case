@@ -50,6 +50,8 @@ MonoBehaviour:
   <ItemName>k__BackingField: Icecream
   rigidbody: {fileID: 1959048964987246509}
   outline: {fileID: 769711856651909440}
+  rotationSpeed: 5
+  rotationLoops: -1
 --- !u!54 &1959048964987246509
 Rigidbody:
   m_ObjectHideFlags: 0
