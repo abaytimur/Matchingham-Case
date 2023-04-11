@@ -11,12 +11,13 @@ namespace Miscellaneous
     {
         // The spawn number is multiplied by this constant 
         public const int ItemNumberToMatch = 3;
-        
+
         private static readonly List<string> PrefabNames = new();
 
         private const string ItemPrefabsFolderPath = "Assets/Prefabs/Items";
         private const string LevelDataPath = "Assets/Scripts/DataHandler/GameDatas/Level";
-        
+
+#if UNITY_EDITOR
 
         // This is used by ItemSpawnData.cs from Unity editor.
         [UsedImplicitly]
@@ -74,5 +75,7 @@ namespace Miscellaneous
 
             return allKitchenData;
         }
+
+#endif
     }
 }

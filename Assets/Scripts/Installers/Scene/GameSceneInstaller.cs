@@ -50,8 +50,12 @@ namespace Installers.Scene
             Container.Bind<LevelManager>().AsSingle().NonLazy();
         }
 
+#if UNITY_EDITOR
+
         // InlineButton is using this method.
         [UsedImplicitly]
         private void GetAllLevelsFromPath() => levelDataSos = Helpers.GetAllLevelDataSo().ToArray();
+
+#endif
     }
 }
