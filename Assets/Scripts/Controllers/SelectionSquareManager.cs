@@ -7,7 +7,6 @@ using DataHandler.GameDatas.Level;
 using Events.External;
 using JetBrains.Annotations;
 using Miscellaneous;
-using UnityEngine;
 using Zenject;
 
 namespace Controllers
@@ -103,7 +102,7 @@ namespace Controllers
             {
                 if (_selectionSquareList[i].CurrentItem is not null)
                 {
-                    _selectionSquareList[i].PlaceItem(_selectionSquareList[i].CurrentItem);
+                    _selectionSquareList[i].PlaceItem();
                 }
                 else
                 {
@@ -148,12 +147,12 @@ namespace Controllers
             _gameSceneEvents.OnItemsMatched?.Invoke();
             _matchCount++;
 
-            Debug.Log($"{_matchCount}: matchCount ");
-            Debug.Log($"{_totalSpawnedItemsCount}: _totalSpawnedItemsCount ");
+            // Debug.Log($"{_matchCount}: matchCount ");
+            // Debug.Log($"{_totalSpawnedItemsCount}: _totalSpawnedItemsCount ");
 
             if (_matchCount >= _totalSpawnedItemsCount)
             {
-                Debug.Log("Level End");
+                // Debug.Log("Level End");
                 PlayerDataModel.Data.lastCompletedLevel++;
                 _gameSceneEvents.OnLevelEnd?.Invoke(true);
             }
@@ -170,7 +169,7 @@ namespace Controllers
                 _selectionSquareList[i].SetOccupied(_selectionSquareList[i].CurrentItem is not null);
                 if (_selectionSquareList[i].CurrentItem is not null)
                 {
-                    _selectionSquareList[i].PlaceItem(_selectionSquareList[i].CurrentItem);
+                    _selectionSquareList[i].PlaceItem();
                 }
             }
 

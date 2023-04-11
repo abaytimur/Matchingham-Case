@@ -9,10 +9,9 @@ namespace Components.SelectionSquare
         [SerializeField] private Transform collectPoint;
         public MatchItem CurrentItem { get; private set; }
         
-        public void PlaceItem(MatchItem item)
+        public void PlaceItem()
         {
             SetOccupied(true);
-            // CurrentItem = item;
             CurrentItem.SetRigidbody(true);
             Transform itemTransform = CurrentItem.transform;
             itemTransform.SetParent(collectPoint);

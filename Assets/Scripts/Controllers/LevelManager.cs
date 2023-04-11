@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DataHandler.DataModels;
 using DataHandler.GameDatas.Level;
 using Events.External;
 using JetBrains.Annotations;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
@@ -39,47 +37,19 @@ namespace Controllers
             _gameSceneEvents.OnLevelStart?.Invoke(_currentLevelDataSo);
         }
 
-        public LevelDataSo PlayNextLevel()
+        public void PlayNextLevel()
         {
             if (_levelList is null || _levelList.Count == 0)
             {
                 Debug.LogError("There are no levels to lead.");
-                return null;
+                return;
             }
-
-            // int currentLevelIndex = _levelList.IndexOf(_currentLevelDataSo);
-            //
-            // if (currentLevelIndex < 0)
-            // {
-            //     Debug.LogError("Current level not found in the level list.");
-            //     return null;
-            // }
-            //
-            // // Get the next level using the modulo operator for wrapping around the list.
-            // LevelDataSo nextLevelDataSo = _levelList.ElementAtOrDefault((currentLevelIndex + 1) % _levelList.Count);
 
             int nextLevelIndex = (PlayerDataModel.Data.lastCompletedLevel+1) % _levelList.Count;
             LevelDataSo nextLevelDataSo =_levelList[nextLevelIndex];
             _currentLevelDataSo = nextLevelDataSo;
             
             _gameSceneEvents.OnLevelStart?.Invoke(_currentLevelDataSo);
-
-            return nextLevelDataSo;
-        }
-
-        private LevelDataSo GetCurrentLevel()
-        {
-            if (_currentLevelDataSo is not null)
-                return _currentLevelDataSo;
-
-            if (_levelList is null || _levelList.Count == 0)
-            {
-                Debug.LogError("There are no levels to lead.");
-                return null;
-            }
-
-            int adjustedLevelToLoad = PlayerDataModel.Data.lastCompletedLevel % _levelList.Count;
-            return _currentLevelDataSo = _levelList[adjustedLevelToLoad];
         }
 
         public void PlayCurrentLevel()

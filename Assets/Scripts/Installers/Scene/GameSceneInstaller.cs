@@ -4,6 +4,7 @@ using Components.UI;
 using Controllers;
 using DataHandler.GameDatas.Level;
 using Events.External;
+using JetBrains.Annotations;
 using Miscellaneous;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
@@ -50,6 +51,7 @@ namespace Installers.Scene
         }
 
         // InlineButton is using this method.
+        [UsedImplicitly]
         private void GetAllLevelsFromPath() => levelDataSos = Helpers.GetAllLevelDataSo().ToArray();
     }
 }

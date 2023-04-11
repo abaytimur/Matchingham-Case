@@ -12,10 +12,10 @@ namespace Components.SelectionSquare
         private GameSceneEvents _gameSceneEvents;
 
         private readonly List<GameObject> _objectsList = new();
-        private readonly float _rotationSpeed = 30f;
+        [SerializeField] private  float rotationSpeed = 30f;
+        [SerializeField] private float updateInterval = 0.01f; // Time interval between rotation updates
         private float _rotationTime;
         private float _rotationAngle;
-        private float _updateInterval = 0.01f; // Time interval between rotation updates
         private bool _canRotate;
 
         [Inject]
@@ -54,7 +54,7 @@ namespace Components.SelectionSquare
             while (_canRotate)
             {
                 // Update rotation time
-                _rotationTime += _rotationSpeed * _updateInterval;
+                _rotationTime += rotationSpeed * updateInterval;
 
                 // Calculate the new rotation angle using Mathf.PingPong()
                 _rotationAngle = Mathf.PingPong(_rotationTime, 60) - 30;
@@ -73,7 +73,7 @@ namespace Components.SelectionSquare
                 }
 
                 // Wait for the specified time interval before updating rotation again
-                yield return new WaitForSeconds(_updateInterval);
+                yield return new WaitForSeconds(updateInterval);
             }
         }
 

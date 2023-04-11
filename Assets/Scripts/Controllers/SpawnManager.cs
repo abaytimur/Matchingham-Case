@@ -30,18 +30,8 @@ namespace Controllers
 
         private void OnEnable() => RegisterEvents();
         private void OnDisable() => UnRegisterEvents();
-
-        private void RegisterEvents()
-        {
-            _gameSceneEvents.OnLevelStart += OnLevelStart;
-            // _gameSceneEvents.OnLevelEnd += OnLevelEnd;
-        }
-
-        private void UnRegisterEvents()
-        {
-            _gameSceneEvents.OnLevelStart -= OnLevelStart;
-            // _gameSceneEvents.OnLevelEnd -= OnLevelEnd;
-        }
+        private void RegisterEvents() => _gameSceneEvents.OnLevelStart += OnLevelStart;
+        private void UnRegisterEvents() => _gameSceneEvents.OnLevelStart -= OnLevelStart;
 
         // Level Initialization
         private void OnLevelStart(LevelDataSo levelDataSo)
@@ -77,11 +67,6 @@ namespace Controllers
             _gameSceneEvents.OnSendTotalSpawnedItemsCount(_itemList.Count);
             SpawnItemsOnRandomPositions(_itemList);
         }
-
-        // private void OnLevelEnd(bool isLevelCompleted)
-        // {
-        //     ClearSpawnedItems();
-        // }
 
         private void SpawnItemsOnRandomPositions(List<MatchItem> itemList)
         {

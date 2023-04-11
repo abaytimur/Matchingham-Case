@@ -125,7 +125,6 @@ namespace Controllers
             Vector3 direction = (_mainCamera.transform.position - _originalPosition).normalized;
             Vector3 position = _originalPosition + direction * displayHeight;
             _heldItem.transform.DOMove(position, .3f);
-            // _heldItem.transform.position = position;
         }
 
         private void ResetHeldItem()
@@ -133,7 +132,6 @@ namespace Controllers
             if (_heldItem is null) return;
             _currentHitItem.OnHit(false);
             _heldItem.SetRigidbody(false);
-            // _heldItem.transform.position = _originalPosition;
             _heldItem.transform.DOMove(_originalPosition, .3f);
             _currentHitItem = null;
             _heldItem = null;

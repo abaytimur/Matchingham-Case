@@ -12,7 +12,6 @@ namespace Components.UI
     {
         [SerializeField] private TextMeshProUGUI levelText;
         [SerializeField] private TextMeshProUGUI starText;
-        [SerializeField] private TextMeshProUGUI timerText;
         private GameSceneEvents _gameSceneEvents;
         private int _currentStarCount;
 
@@ -42,7 +41,6 @@ namespace Components.UI
             _currentStarCount = 0;
             SetLevelText(PlayerDataModel.Data.lastCompletedLevel + 1);
             SetStarText();
-            // timerText.SetText($"Time {levelDataSo.time}");
         }
 
         private void OnLevelEnd(bool isLevelCompleted)

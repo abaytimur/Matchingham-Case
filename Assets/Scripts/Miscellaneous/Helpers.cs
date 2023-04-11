@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using DataHandler.GameDatas.Level;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ namespace Miscellaneous
         private const string LevelDataPath = "Assets/Scripts/DataHandler/GameDatas/Level";
         
 
+        // This is used by ItemSpawnData.cs from Unity editor.
+        [UsedImplicitly]
         public static List<string> GetItemPrefabNameList()
         {
             // Clear the list to avoid duplicates.
